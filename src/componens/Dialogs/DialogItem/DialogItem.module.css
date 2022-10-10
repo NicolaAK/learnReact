@@ -1,0 +1,17 @@
+.dialog {
+    display: flex;
+    padding: 10px;
+
+}
+
+.active {
+    color: rgb(255, 255, 255);
+}
+
+.dialog img {
+    width: 60px;
+    border-radius: 60px;
+}
+.dialogItem {
+    margin: auto 5px;
+}
