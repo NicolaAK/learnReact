@@ -5,15 +5,11 @@ import Message from "./Message/Message";
 
 const Dialogs = (props) => {
 
-
-
-
     let messagesElements = props.state.messagesData.map(m => (<Message message={m.message} />));
 
     let dialogsElements = props.state.dialogsData.map(d => (<DialogItem name={d.name} id={d.id} />));
 
     let newSubmitElement = React.createRef();
-
 
     let submit = () => {
         let text = newSubmitElement.current.value;

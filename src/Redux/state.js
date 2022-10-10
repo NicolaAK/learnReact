@@ -31,7 +31,6 @@ let state = {
     { id: 5, name: 'Jony', },
     { id: 6, name: 'Tarantino', },
   ]
-
 }
 
 export let addPost = (postMessage) => {
