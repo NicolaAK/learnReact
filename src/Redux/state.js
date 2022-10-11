@@ -1,5 +1,6 @@
-import { rerenderEntireTree } from "../render";
-
+let rerenderEntireTree = () => {
+  console.log("State")
+}
 
 let state = {
   profilePage: {
@@ -7,7 +8,7 @@ let state = {
       { id: 1, message: 'Helloy', like: 15, },
       { id: 2, message: 'Helloy, my friends', like: 0, },
     ],
-    newPostText: "122354",
+    newPostText: "afc",
   },
   dialogsPage: {
     dialogsData: [
@@ -23,6 +24,7 @@ let state = {
       { message: 'Yes', },
       { message: 'No', },
     ],
+    newSubmitText: "123",
   },
   sidebar: [
     { id: 1, name: 'Nicolay' },
@@ -34,7 +36,7 @@ let state = {
   ]
 }
 
-export let addPost = () => {
+export const addPost = () => {
 
   let newPost = {
     id: 3,
@@ -42,12 +44,30 @@ export let addPost = () => {
     like: 0,
   };
   state.profilePage.PostsData.push(newPost);
-  state.profilePage.newPostText= '';
+  state.profilePage.newPostText = '';
   rerenderEntireTree(state);
 }
 
-export let updateNewPostText = (newText) => {
+export const updateNewPostText = (newText) => {
   state.profilePage.newPostText = newText;
+  rerenderEntireTree(state);
+}
+
+export const subscribe = (observer) => {
+  rerenderEntireTree = observer;
+}
+
+export const submit = () => {
+
+  let newSubmit = {
+    message: state.dialogsPage.newSubmitText,
+  };
+  state.dialogsPage.messagesData.push(newSubmit);
+  state.dialogsPage.newSubmitText = '';
+  rerenderEntireTree(state);
+}
+export const updateSubmitText = (newSubmit) => {
+  state.dialogsPage.newSubmitText = newSubmit;
   rerenderEntireTree(state);
 }
 

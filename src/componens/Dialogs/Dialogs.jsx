@@ -12,8 +12,11 @@ const Dialogs = (props) => {
     let newSubmitElement = React.createRef();
 
     let submit = () => {
-        let text = newSubmitElement.current.value;
-        alert(text)
+        props.submit()
+    }
+    let onMessageChange = () => {
+        let textS = newSubmitElement.current.value;
+        props.updateSubmitText(textS)
     }
 
     return (
@@ -26,7 +29,7 @@ const Dialogs = (props) => {
             <div className={s.messages}>
                 {messagesElements}
                 <div>
-                    <textarea ref={newSubmitElement}></textarea>
+                    <textarea onChange={onMessageChange} ref={newSubmitElement} value={props.newSubmitText}></textarea>
                 </div>
                 <div>
                     <button onClick={submit}>submit</button>
