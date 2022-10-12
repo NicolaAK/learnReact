@@ -12,11 +12,12 @@ const Dialogs = (props) => {
     let newSubmitElement = React.createRef();
 
     let submit = () => {
-        props.submit()
+        props.dispatch()
     }
     let onMessageChange = () => {
-        let textS = newSubmitElement.current.value;
-        props.updateSubmitText(textS)
+        let text = newSubmitElement.current.value;
+        let action = 
+        props.dispatch(action)
     }
 
     return (
