@@ -1,4 +1,4 @@
-
+import React from 'react';
 import './App.css';
 import Dialogs from './componens/Dialogs/Dialogs';
 import Header from './componens/Heeader/Header';
