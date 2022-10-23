@@ -1,8 +1,12 @@
 import React from 'react';
+import Preloader from '../../common/preloader';
 import s from './ProfileInfo.module.css'
 
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+    if (!props.profile) {
+        return <Preloader />
+    }
     return (
         <div>
             <div>
@@ -10,10 +14,16 @@ const ProfileInfo = () => {
             </div>
             <div className={s.avatar}>
                 <div className={s.avatarFoto}>
-                    <img src='https://www.esafety.gov.au/sites/default/files/2019-08/Remove%20images%20and%20video.jpg' />
+                    <img src={props.profile.photos.large} />
                 </div>
                 <div>
-                    age
+                    {props.profile.aboutMe} //
+                </div>
+                <div>
+                    {props.profile.fullName} //
+                </div>
+                <div>
+                    {props.profile.userId}
                 </div>
             </div>
         </div>
