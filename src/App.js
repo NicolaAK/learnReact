@@ -15,15 +15,15 @@ const App = (props) => {
     <BrowserRouter>
       <div className='app-wrapper'>
         <Header />
-        <Navbar/>
+        <Navbar />
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path='/profile/*' element={<ProfileContainer/>} />
-            <Route path='/dialogs' element={<DialogsContainer/>} />
+            <Route path='/profile/:profileId' element={<ProfileContainer />} />
+            <Route path='/dialogs' element={<DialogsContainer />} />
             <Route path='/music' element={<Music />} />
             <Route path='/news' element={<News />} />
             <Route path='/setting' element={<Setting />} />
-            <Route path='/users' element={<UsersContainer/> } />
+            <Route path='/users' element={<UsersContainer />} />
           </Routes>
         </div>
       </div>
