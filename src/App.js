@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Header from './componens/Heeader/Header';
+import HeaderContainer from './componens/Heeader/HeaderContainer';
 import Navbar from './componens/Navbar/Navbar';
 import Music from './componens/Music/Music';
 import News from './componens/News/News';
@@ -14,7 +14,7 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <div className='app-wrapper'>
-        <Header />
+        <HeaderContainer />
         <Navbar />
         <div className='app-wrapper-content'>
           <Routes>
