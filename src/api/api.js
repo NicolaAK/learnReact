@@ -13,6 +13,24 @@ export const usersAPI = {
             .then(response => {
                 return response.data
             })
+    },
+    deleteUsers(id) {
+        return instance.delete(`follow/${id}`)
+            .then(response => {
+                return response.data
+            })
+    },
+    postUsers(id) {
+        return instance.post(`follow/${id}`)
+            .then(response => {
+                return response.data
+            })
+    },
+    getIsersId(profileId) {
+        return instance.get(`profile/${profileId}`)
+            .then(response => {
+                return response.data
+            })
     }
 }
 
