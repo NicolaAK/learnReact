@@ -1,11 +1,11 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import Profile from './Profile';
-import axios from "axios";
 import { connect } from 'react-redux';
-import { setUserProfile } from "../../Redux/profile-reducer";
+import { getUserProfile } from "../../Redux/profile-reducer";
 import { useLocation, useNavigate, useParams, } from "react-router-dom";
-import { usersAPI } from "../../api/api";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from 'redux';
+
 
 function withRouter(Component) {
   function ComponentWithRouterProp(props) {
@@ -25,10 +25,7 @@ class ProfileContainer extends React.Component {
 
   componentDidMount() {
     let profileId = this.props.router.params.profileId;
-    usersAPI.getIsersId(profileId)
-      .then(response => {
-        this.props.setUserProfile(response)
-      })
+    this.props.getUserProfile(profileId)
   }
   render() {
     return (
@@ -39,10 +36,11 @@ class ProfileContainer extends React.Component {
   }
 }
 
-
 let mapStateToProps = (state) => ({
-  profile: state.profilePage.profile
+  profile: state.profilePage.profile,
 })
 
-
-export default connect(mapStateToProps, { setUserProfile })(withRouter(ProfileContainer));
+export default compose(
+  connect(mapStateToProps, { getUserProfile }),
+  withAuthRedirect
+)(ProfileContainer);

@@ -89,7 +89,7 @@ export const follow = (userId) => {
         dispatch(toggleFollowingProgress(true, userId))
         usersAPI.postUsers(userId)
             .then(response => {
-                if (response.resultCode === 0) {
+                if (response.data.resultCode === 0) {
                     dispatch(acceptFollow(userId))
                 }
                 dispatch(toggleFollowingProgress(false, userId))
@@ -102,7 +102,7 @@ export const unfollow = (userId) => {
         dispatch(toggleFollowingProgress(true, userId))
         usersAPI.deleteUsers(userId)
             .then(response => {
-                if (response.resultCode === 0) {
+                if (response.data.resultCode === 0) {
                     dispatch(acceptUnFollow(userId))
                 }
                 dispatch(toggleFollowingProgress(false, userId))
