@@ -42,7 +42,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-let withRedirect = withAuthRedirect(UsersContainer)
+// let withRedirect = withAuthRedirect(UsersContainer)
 
 export default compose(
     connect(mapStateToProps, {
