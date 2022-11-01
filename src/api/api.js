@@ -22,10 +22,27 @@ export const usersAPI = {
         return instance.post(`follow/${id}`)
     },
     getIsersId(profileId) {
-        return instance.get(`profile/${profileId}`)
+        return profileAPI.getProfile(profileId)
             .then(response => {
                 return response.data
             })
+    }
+}
+
+export const profileAPI = {
+    getProfile(profileId) {
+        return instance.get(`profile/${profileId}`)
+            .then(response => {
+                return response
+            })
+    },
+    getStatus(profileId) {
+        return instance.get(`profile/status/${profileId}`)
+    },
+    updateStatus(status) {
+        return instance.put(`profile/status`, {
+            status: status
+        })
     }
 }
 
