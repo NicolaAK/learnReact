@@ -9,7 +9,7 @@ import DialogsContainer from "./componens/Dialogs/DialogsContainer"
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import UsersContainer from './componens/Users/UsersContainer';
 import ProfileContainer from './componens/Profile/ProfileContainer';
-import Login from './componens/login/login';
+import Login from './componens/login/loginHF';
 
 const App = (props) => {
   return (
