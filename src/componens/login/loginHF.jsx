@@ -1,7 +1,7 @@
 import React from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
-const Login = (props) => {
+const Login = () => {
     const { register,
         handleSubmit,
         formState: { errors },
