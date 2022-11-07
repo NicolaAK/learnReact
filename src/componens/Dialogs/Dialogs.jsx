@@ -9,17 +9,9 @@ const Dialogs = (props) => {
     let state = props.dialogsPage;
     let messagesElements = state.messagesData.map(m => (<Message message={m.message} key={m.id} />));
     let dialogsElements = state.dialogsData.map(d => (<DialogItem name={d.name} key={d.id} id={d.id} />));
-    let newMessageBody = state.newMessageBody;
 
-    let onSendMessageClick = () => {
-        props.sendMessage();
-    }
-    let onNewMessageChange = (e) => {
-        let body = e.target.value;
-        props.updateNewMessageBody(body);
-    }
-    let addNewMessage = () => {
-        alert("andj")
+    let addNewMessage = (value) => {
+        props.sendMessage(value.newMessage);
     }
     if (!props.isAuth) return <Navigate to={"/login"} />
     return (
@@ -29,32 +21,22 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {messagesElements}
-                {/* <div>
-                    <textarea onChange={onNewMessageChange} value={newMessageBody}></textarea>
-                </div>
-                <div>
-                    <button onClick={onSendMessageClick}>submit</button>
-                </div> */}
-                <AddMessageForm onSubmit={addNewMessage} />
+                <AddMessageForm newMessageText={addNewMessage} />
             </div>
         </div>
     )
 }
 
 const AddMessageForm = (props) => {
-    const { register,
-        handleSubmit,
-        reset,
-    } = useForm();
+    const { register, handleSubmit, reset, } = useForm();
     const onSubmit = data => {
-        console.log(data)
         reset()
-        props.addNewMessage()
+        props.newMessageText(data)
     };
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div>
-                <input {...register("message", {})}
+                <input {...register("newMessage", {})}
                     placeholder="message" />
             </div>
             <input type="submit" />
