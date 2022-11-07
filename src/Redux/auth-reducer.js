@@ -1,5 +1,6 @@
 import { authAPI } from "../api/api"
 
+
 const SET_USER_DATA = "SET-USER-DATA";
 
 let initialState = {
@@ -31,14 +32,22 @@ export const getAuthUserData = () => (dispatch) => {
             }
         })
 }
-export const login = (email, password, rememberMe) => (dispatch) => {
+export const login = (email, password, rememberMe, setError) => (dispatch) => {
     authAPI.login(email, password, rememberMe)
         .then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(getAuthUserData())
+            } else if (response.data.resultCode === 1) {
+                setError("server", {
+                    message: "Неправильно введён логин или пароль"
+                })
+            } else if (response.data.resultCode === 10) {
+                console.log("Опять captcha")
             }
         })
 }
+
+
 export const logout = () => (dispatch) => {
     authAPI.logout()
         .then(response => {

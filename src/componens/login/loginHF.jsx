@@ -1,14 +1,16 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, } from "react-hook-form";
 import { connect } from "react-redux";
 import { login } from "../../Redux/auth-reducer";
 import { Navigate } from "react-router-dom"
 
 const Login = (props) => {
-    const { register,
+        const { register,
         handleSubmit,
         formState: { errors, isValid },
         reset,
+        setError,
+        clearErrors,
     } = useForm({
         mode: "onChange",
 
@@ -16,7 +18,7 @@ const Login = (props) => {
     const onSubmit = data => {
         console.log(data)
         reset()
-        props.login(data.email, data.password, data.rememberMe)
+        props.login(data.email, data.password, data.rememberMe, setError)
     };
     if (props.isAuth) {
         return <Navigate to={"/profile/26415"} />
@@ -35,9 +37,10 @@ const Login = (props) => {
                     },
 
                 })}
+                    onFocus={() => { clearErrors() }}
                     placeholder="email" />
-                {errors?.login && (
-                    <div style={{ color: "red" }}>{errors.login.message}</div>
+                {errors?.email && (
+                    <div style={{ color: "red" }}>{errors.email.message}</div>
                 )}
             </div>
             <div>
@@ -47,6 +50,7 @@ const Login = (props) => {
                 <input type="password" {...register("password", {
                     required: "Password is requier field!",
                 })}
+                    onFocus={() => { clearErrors() }}
                     placeholder="password" />
                 {errors?.password && (
                     <div style={{ color: "red" }}>{errors.password.message}</div>
@@ -56,6 +60,7 @@ const Login = (props) => {
                 <input type="checkbox"  {...register('rememberMe', {})} /> remember me
             </div>
             <input type="submit" disabled={!isValid} />
+            {errors.server && <div style={{ color: 'red' }}>{errors.server.message}</div>}
         </form>
     );
 }
