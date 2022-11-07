@@ -28,7 +28,7 @@ const Dialogs = (props) => {
 }
 
 const AddMessageForm = (props) => {
-    const { register, handleSubmit, reset, } = useForm();
+    const { register, handleSubmit, reset, formState: { errors, isValid }, } = useForm({ mode: "onBlue" });
     const onSubmit = data => {
         reset()
         props.newMessageText(data)
@@ -36,10 +36,13 @@ const AddMessageForm = (props) => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div>
-                <input {...register("newMessage", {})}
+                <input {...register("newMessage", { required: "Message is requier field!", })}
                     placeholder="message" />
             </div>
-            <input type="submit" />
+            {errors?.newMessage && (
+                <div style={{ color: "red" }}>{errors.newMessage.message}</div>
+            )}
+            <input type="submit" disabled={!isValid} />
         </form>
     );
 }

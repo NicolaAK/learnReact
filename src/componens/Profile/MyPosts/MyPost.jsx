@@ -19,7 +19,7 @@ const MyPost = (props) => {
 }
 
 const AddPostForm = (props) => {
-    const { register, handleSubmit, reset, } = useForm();
+    const { register, handleSubmit, reset, formState: { errors, isValid }, } = useForm({ mode: "onBlue" });
     const onSubmit = data => {
         console.log(data)
         reset()
@@ -28,10 +28,19 @@ const AddPostForm = (props) => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div>
-                <input {...register("newPost", {})}
+                <input {...register("newPost", {
+                    required: "Post is requier field!",
+                    maxLength: {
+                        value: 30,
+                        message: "Max 30 simbol"
+                    }
+                })}
                     placeholder="posts" />
             </div>
-            <input type="submit" />
+            {errors?.newPost && (
+                <div style={{ color: "red" }}>{errors?.newPost?.message}</div>
+            )}
+            <input type="submit" disabled={!isValid} />
         </form>
     );
 }

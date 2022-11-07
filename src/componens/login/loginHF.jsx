@@ -1,10 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { connect } from "react-redux";
+import { login } from "../../Redux/auth-reducer";
+import { Navigate } from "react-router-dom"
 
-const Login = () => {
+const Login = (props) => {
     const { register,
         handleSubmit,
-        formState: { errors },
+        formState: { errors, isValid },
         reset,
     } = useForm({
         mode: "onChange",
@@ -13,14 +16,18 @@ const Login = () => {
     const onSubmit = data => {
         console.log(data)
         reset()
+        props.login(data.email, data.password, data.rememberMe)
     };
+    if (props.isAuth) {
+        return <Navigate to={"/profile/26415"} />
+    }
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div>
                 <div>
                     Login
                 </div>
-                <input {...register("login", {
+                <input {...register("email", {
                     required: "Email is requier field!",
                     pattern: {
                         value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -28,7 +35,7 @@ const Login = () => {
                     },
 
                 })}
-                    placeholder="login" />
+                    placeholder="email" />
                 {errors?.login && (
                     <div style={{ color: "red" }}>{errors.login.message}</div>
                 )}
@@ -48,9 +55,11 @@ const Login = () => {
             <div>
                 <input type="checkbox"  {...register('rememberMe', {})} /> remember me
             </div>
-            <input type="submit" />
+            <input type="submit" disabled={!isValid} />
         </form>
     );
 }
-
-export default Login;
+const mapStateToProps = (state) => ({
+    isAuth: state.auth.isAuth
+})
+export default connect(mapStateToProps, { login })(Login);
