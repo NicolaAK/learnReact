@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import { usersAPI } from "../api/api"
 
 const FOLLOW = "FOLLOW";
@@ -57,7 +56,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 followingInProgress: action.isFetching
                     ? [...state.followingInProgress, action.userId]
-                    : state.followingInProgress.filter(id => id != action.userId)
+                    : state.followingInProgress.filter(id => id !== action.userId)
             }
         }
         default:
@@ -77,6 +76,7 @@ export const toggleFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_I
 export const getUsers = (currentPage, pageSize) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true))
+        dispatch(setCurrentPage(currentPage))
         usersAPI.getUsers(currentPage, pageSize).then(data => {
             dispatch(toggleIsFetching(false))
             dispatch(setUsers(data.items))
