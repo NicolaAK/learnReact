@@ -4,6 +4,7 @@ import userPhoto from "../../assets/image/noName.png"
 import { NavLink } from 'react-router-dom';
 import Paginator from "./Paginator";
 
+
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
@@ -11,6 +12,7 @@ let Users = (props) => {
         pages.push(i)
     }
     return (<div>
+        <Paginator currentPage={props.currentPage} onPageChanged={props.onPageChanged} totalUsersCount={props.totalUsersCount} pageSize={props.pageSize} />
         {props.users.map(u => <div key={u.id} >
             <span>
                 <NavLink to={"/profile/" + u.id}>
@@ -41,7 +43,7 @@ let Users = (props) => {
         </div>
         )
         }
-        <Paginator currentPage={props.currentPage} onPageChanged={props.onPageChanged} totalUsersCount={props.totalUsersCount} pageSize={props.pageSize} />
+        
     </div>
     )
 }
