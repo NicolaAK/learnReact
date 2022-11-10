@@ -11,7 +11,7 @@ import UsersContainer from './componens/Users/UsersContainer';
 import ProfileContainer from './componens/Profile/ProfileContainer';
 import Login from './componens/login/loginHF';
 
-const App = (props) => {
+const App = () => {
   return (
     <BrowserRouter>
       <div className='app-wrapper'>

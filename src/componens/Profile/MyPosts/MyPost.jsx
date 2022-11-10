@@ -4,6 +4,7 @@ import Post from './Post/Post';
 import { useForm } from "react-hook-form";
 
 const MyPost = (props) => {
+
     let PostsElement = props.PostsData.map(p => (<Post message={p.message} like={p.like} key={p.id} />))
     let onAddPost = (value) => {
         props.addPost(value.newPost);

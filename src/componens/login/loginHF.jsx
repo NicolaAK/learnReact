@@ -5,7 +5,7 @@ import { login } from "../../Redux/auth-reducer";
 import { Navigate } from "react-router-dom"
 
 const Login = (props) => {
-        const { register,
+    const { register,
         handleSubmit,
         formState: { errors, isValid },
         reset,
@@ -16,7 +16,6 @@ const Login = (props) => {
 
     });
     const onSubmit = data => {
-        console.log(data)
         reset()
         props.login(data.email, data.password, data.rememberMe, setError)
     };
