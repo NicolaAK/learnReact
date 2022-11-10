@@ -5,11 +5,11 @@ import Navbar from './componens/Navbar/Navbar';
 import Music from './componens/Music/Music';
 import News from './componens/News/News';
 import Setting from './componens/Setting/Setting';
-import DialogsContainer from "./componens/Dialogs/DialogsContainer"
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import UsersContainer from './componens/Users/UsersContainer';
 import ProfileContainer from './componens/Profile/ProfileContainer';
 import Login from './componens/login/loginHF';
+import DialogsContainer from "./componens/Dialogs/DialogsContainer"
 
 const App = () => {
   return (
