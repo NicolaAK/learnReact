@@ -36,6 +36,9 @@ const ProfileData = (props) => {
     return (
         <div>
             <div>
+                <button onClick={props.goToEditMode}>EDIT</button>
+            </div>
+            <div>
                 <b>Full name</b>: {props.profile.fullName}
             </div>
             <div>
@@ -60,27 +63,7 @@ const ProfileData = (props) => {
 const ProfileDataForm = (props) => {
     return (
         <div>
-            <div>
-                <button onClick={props.goToEditMode}>EDIT</button>
-            </div>
-            <div>
-                <b>Full name</b>: {props.profile.fullName}
-            </div>
-            <div>
-                <b>Looking for a job</b>: {props.profile.lookingForAJob ? "yes" : "no"}
-            </div>
-            {props.profile.lookingForAJob &&
-                <div>
-                    <b>My prof skills</b>: {props.profile.lookingForAJobDescription}
-                </div>}
-            <div>
-                <b>About me</b>: {props.profile.aboutMe ? "yes" : "no"}
-            </div>
-            <div>
-                <b>Contacts</b>: {Object.keys(props.profile.contacts).map(key => {
-                    return <Contact key={key} contactTile={key} contactValue={props.profile.contacts[key]} />
-                })}
-            </div>
+            form
         </div>
     )
 }

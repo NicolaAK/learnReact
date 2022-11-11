@@ -23,6 +23,7 @@ const Login = (props) => {
         return <Navigate to={"/profile/26415"} />
     }
     return (
+
         <form onSubmit={handleSubmit(onSubmit)}>
             <div>
                 <div>
@@ -60,10 +61,13 @@ const Login = (props) => {
             </div>
             <input type="submit" disabled={!isValid} />
             {errors.server && <div style={{ color: 'red' }}>{errors.server.message}</div>}
+            {props.captchaUrl && <img src={props.captchaUrl} />}
         </form>
+
     );
 }
 const mapStateToProps = (state) => ({
+    captchaUrl: state.auth.captchaUrl,
     isAuth: state.auth.isAuth
 })
 export default connect(mapStateToProps, { login })(Login);
